@@ -3,14 +3,24 @@ package com.example.bookservice.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Book {
     @Id
     @GeneratedValue
     private Long id;
+    @NotBlank
+    @Size(max = 200)
     private String title;
+    @NotBlank
+    @Size(max = 30)
     private String author;
+    @Min(1)
+    @Max(9999)
     private int publicationYear;
 
 

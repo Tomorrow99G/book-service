@@ -1,5 +1,6 @@
 package com.example.bookservice.service;
 
+import com.example.bookservice.exception.BookNotFoundException;
 import com.example.bookservice.repository.BookRepository;
 import org.springframework.stereotype.Service;
 import com.example.bookservice.entity.Book;
@@ -23,7 +24,14 @@ public class BookService {
     }
     // 2.Show book only by id
     public Optional<Book> getBookById(Long id) {
-        return bookRepository.findById(id);
+        Optional<Book> book = bookRepository.findById(id);
+
+        if(book.isEmpty()){
+            throw new BookNotFoundException("Book not found");
+        }
+        return book;
+
+
     }
 
     // 3.Save/add new book

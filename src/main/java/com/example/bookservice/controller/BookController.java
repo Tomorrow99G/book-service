@@ -2,6 +2,7 @@ package com.example.bookservice.controller;
 
 import com.example.bookservice.entity.Book;
 import com.example.bookservice.service.BookService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,12 +27,12 @@ public class BookController {
     }
 
     @PostMapping("/book")
-    public Book createBook(@RequestBody Book book){
+    public Book createBook(@Valid @RequestBody Book book){
         return bookService.createBook(book);
     }
 
     @PutMapping("/book/{id}")
-    public Book updateBook(@PathVariable Long id, @RequestBody Book book) {
+    public Book updateBook(@PathVariable Long id, @Valid @RequestBody Book book) {
         return bookService.updateBook(id,book);
     }
 
